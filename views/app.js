@@ -34,7 +34,7 @@ $.getJSON("/articles", function(data) {
     link.attr("target", "_blank");
 
     cell1.append(i+1);
-    cell2.append(data[i].title);
+    cell2.append(data[i].headline);
     cell3.append(link);
     cell4.append(button);
     cell5.append(delete_button);

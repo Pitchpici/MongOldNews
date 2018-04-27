@@ -27,11 +27,19 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/Mongoldnews");
+// mongoose.connect("mongodb://localhost/Mongoldnews");
+
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/Mongoldnews";
+
+mongoose.Promise = Promise;
+mongoose.connect(MONGODB_URI);
+
 
 // Routes
 
-// A GET route for scraping the propublica website
+// A GET route for scraping the Propublica website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("https://www.propublica.org/").then(function(response) {
@@ -130,12 +138,13 @@ app.get("/articles/:id", function(req, res) {
 app.post("/articles/:id", function(req, res) {
   // Create a new note and pass the req.body to the entry
   if (req.body.type == "save") {
-    db.Note.create(req.body) 
-      .then(function(dbNote) {
-      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+
+    db.Comment.create(req.body) 
+      .then(function(dbComment) {
+      // If a Comment was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Comment
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-        return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
       })
       .then(function(dbArticle) {
       // If we were able to successfully update an Article, send it back to the client
@@ -145,13 +154,15 @@ app.post("/articles/:id", function(req, res) {
       // If an error occurred, send it to the client
         res.json(err);
       });
-    } else {
-    db.Note.remove()
-    .then(function(dbNote) {
-      // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
+    } 
+    else 
+    {
+    db.Comment.remove()
+    .then(function(dbComment) {
+      // If a Comment was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Comment
       // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
       // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-        return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+        return db.Article.findOneAndUpdate({ _id: req.params.id }, { comment: dbComment._id }, { new: true });
       })
       .then(function(dbArticle) {
       // If we were able to successfully update an Article, send it back to the client
