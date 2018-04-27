@@ -1,21 +1,23 @@
-var express = require("express");
+var express    = require("express");
 var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+var logger     = require("morgan");
+var mongoose   = require("mongoose");
+var favicon    = require('express-favicon');
 
 // Our scraping tools
 // Axios is a promised-based http library, similar to jQuery's Ajax method
 // It works on the client and on the server
-var axios = require("axios");
-var cheerio = require("cheerio");
+var axios      = require("axios");
+var cheerio    = require("cheerio");
 
 // Require all models
-var db = require("./models");
+var db         = require("./models");
 
-var PORT = process.env.PORT || 3000;
+var PORT       = process.env.PORT || 3000;
 
 // Initialize Express
-var app = express();
+var app       = express();
+app.use(favicon(__dirname + '/public/favicon.png'));
 
 // Configure middleware
 
