@@ -10,6 +10,7 @@ $.getJSON("/articles", function(data) {
     var cell3 = $("<td>");
     var cell4 = $("<td>");
     var cell5 = $("<td>");
+    var cell6 = $("<td>");
     var link = $("<a>");
     var delete_button = $("<button>");
     var button = $("<button>");
@@ -34,20 +35,21 @@ $.getJSON("/articles", function(data) {
     link.attr("target", "_blank");
 
     cell1.append(i+1);
-    cell2.append(data[i].headline);
-    cell3.append(link);
-    cell4.append(button);
-    cell5.append(delete_button);
+    cell2.addClass("bold").append(data[i].headline);
+    cell3.append(data[i].summary);
+    cell4.append(link)
+    cell5.append(button);
+    cell6.append(delete_button);
 
     row.append(cell1);
     row.append(cell2);
     row.append(cell3);
     row.append(cell4);
     row.append(cell5);
+    row.append(cell6);
 
     $("tbody").append(row);
 
-    // $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "</p>");
   }
 });
 
@@ -70,7 +72,7 @@ $(document).on("click", ".btn_modal", function() {
     .then(function(data) {
       console.log(data);
       // The title of the article
-      $(".modal-title").append(data.title);
+      $(".modal-title").append(data.headline);
 
       // A textarea to add a new comment body
       $(".modal-body").append("<textarea id='bodyinput' name='body'> </textarea>");
