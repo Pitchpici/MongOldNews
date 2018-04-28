@@ -97,6 +97,7 @@ $(document).on("click", ".btn_delete", function() {
 
   // Save the id from the p tag
   var thisId = $(this).attr("data-id");
+  console.log("this is the article id " + thisId);
 
   // Now make an ajax call for the Article
   // Run a POST request to delete just the article thisId
