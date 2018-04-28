@@ -78,10 +78,7 @@ $(document).on("click", ".btn_modal", function() {
 
 
       $(".btn-save-changes").attr("data-id", data._id);
-      // A button to submit a new comment, with the id of the article saved to it
-      // $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
-      // $("#notes").append("<button data-id='" + data._id + "' id='deletenote'>Delete Note</button>");
-
+    
       // If there's a comment in the article
       if (data.comment) {
         // Place the body of the comment in the body textarea
@@ -166,8 +163,7 @@ $(document).on("click", ".btn-save-changes", function() {
     url: "/articles/" + thisId,
     data: {
       type: "save",
-      // Value taken from title input
-      // title: $("#titleinput").val(),
+      
       // Value taken from comment textarea
       body: $("#bodyinput").val()
     }
@@ -177,12 +173,8 @@ $(document).on("click", ".btn-save-changes", function() {
       // Log the response
       console.log(data);
       // Empty the comments section
-      // $("#comments").empty();
+   
     });
-
-  // Also, remove the values entered in the input and textarea for note entry
-  // $("#titleinput").val("");
-  // $("#bodyinput").val("");
 });
 
 // When you click the deletecomment button

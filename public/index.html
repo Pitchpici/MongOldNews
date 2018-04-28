@@ -12,7 +12,7 @@
 
 
     <style>
-      body { background-color: #F2F6D0 }
+      body { background-color: #FFB6C1 }
       #wrapper {
         width: 960px;
         margin-left: auto;
@@ -32,7 +32,7 @@
       textarea, input {
         display: block;
         width: 100%;
-        background-color: #FCF5C7;
+        background-color: #F5F5F5;
       }
       input {
         height: 36px;
@@ -42,17 +42,25 @@
         height: 200px;
         font-size: 18px;
       }
+      a {
+        color: black;
+      }
+
     </style>
   </head>
   <body>
     <div id="wrapper">
       <div class="card" style="width: 60rem;">
-        <div class="card-body">
-          <h5 class="card-title">MongoldNews</h5>
-          <p class="card-text"> Grab a glass of wine and... brace yourself!</p>
-          <a class="btn btn-primary btn-scrape">Scrape ProPublica</a>
-          <a class="btn btn-primary btn-delete">Delete All</a>
-        </div>
+          <div class="card-body">
+              <h1 class="card-title text-center">MongoldNews</h1>
+              <h3 class="card-text text-center"> Grab a glass of wine and... brace yourself!</h3>
+
+              <div class="row justify-content-center">      
+                      <a class="btn btn-primary btn-scrape">Scrape ProPublica</a>
+                      <a class="btn btn-danger btn-delete">Delete All</a>
+              </div> 
+
+          </div>
       </div>
 
       <div id="comments"></div>
@@ -88,6 +96,7 @@
 
             <th scope="col">ID</th>
             <th scope="col">Title</th>
+            <th scope="col">Summary</th>
             <th scope="col">Link</th>
             <th scope="col">Action</th>
             <th scope="col">Delete</th>
