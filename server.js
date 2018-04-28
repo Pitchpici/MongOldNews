@@ -17,7 +17,7 @@ var PORT       = process.env.PORT || 3000;
 
 // Initialize Express
 var app       = express();
-app.use(favicon(__dirname + '/fav/favicon.png'));
+app.use(favicon(__dirname + '/public/favicon.png'));
 
 // Configure middleware
 
