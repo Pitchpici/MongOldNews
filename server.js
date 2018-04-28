@@ -26,7 +26,7 @@ app.use(logger("dev"));
 app.use(bodyParser.urlencoded({ extended: true }));
 // Use express.static to serve the public folder as a static directory
 app.use(express.static("public"));
-app.use(favicon(__dirname + '/public/favicon.png'));
+app.use(favicon(__dirname + '/public/favicon.ico'));
 
 
 // Connect to the Mongo DB
